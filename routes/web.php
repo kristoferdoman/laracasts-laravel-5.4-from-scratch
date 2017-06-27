@@ -11,26 +11,39 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/tasks', function () {
 
-    $tasks = [
-        'Go to the store',
-        'Finish my screencast',
-        'Go shopping'
-    ];
+    $tasks = DB::table('tasks')->get();
 
-    return view('welcome', compact('tasks'));
+    return view('tasks.index', compact('tasks'));
 
     // Displaying different ways of passing data to views.
 
+    // 1.)
     // $name = 'Kristofer';
     // $age = 31;
 
     // return view('welcome', compact('name', 'age'));
 
+    // 2.)
     // return view('welcome', [
     //     'name' => 'Laracasts',
     // ]);
 
+    // 3.)
     // return view('welcome')->with('name', 'World');
+
+    // 4.)
+    // $tasks = [
+    //     'Go to the store',
+    //     'Finish my screencast',
+    //     'Go shopping'
+    // ];
+
+    // return view('welcome', compact('tasks'));
+});
+
+Route::get('/tasks/{task}', function ($id) {
+    $task = DB::table('tasks')->find($id); 
+    return view('tasks.show', compact('task'));
 });
