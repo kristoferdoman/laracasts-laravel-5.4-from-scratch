@@ -41,9 +41,14 @@ class TasksController extends Controller {
         // return view('welcome', compact('tasks'));
     }
 
-    public function show($id) {
+    // This is called route model binding.
+    // So instead of passing in an $id and finding the specific task, you can just accept a task as a parameter
+    // and it will be automatically populated for you.
+    // This is the equivelent of Task::find(wildcard);
+    // One thing to keep in mind is that Laravel will assume the wildcard is an id.
+    public function show(Task $task) {
         // $task = DB::table('tasks')->find($id); 
-        $task = Task::find($id);
+        // $task = Task::find($id);
 
         return view('tasks.show', compact('task'));
     }
