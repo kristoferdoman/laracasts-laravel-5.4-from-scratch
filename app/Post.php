@@ -21,4 +21,9 @@ class Post extends Model {
     // protected $gaurded = ['user_id'];
     // One other thing you could do instead of doing this for every single class is create a parent class @ App/Model.php
     // protected $guarded = [];
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
 }
