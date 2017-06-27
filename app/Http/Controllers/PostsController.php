@@ -37,6 +37,11 @@ class PostsController extends Controller {
         // // Save it to the database.
         // $post->save();
 
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         // Another way to do the above.
         Post::create([
             'title' => request('title'),
