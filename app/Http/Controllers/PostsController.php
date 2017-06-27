@@ -9,7 +9,8 @@ class PostsController extends Controller {
 
     // GET /posts
     public function index() {
-        return view('posts.index');
+        $posts = Post::latest()->get();
+        return view('posts.index', compact('posts'));
     }
 
     // GET /posts/create
@@ -18,8 +19,8 @@ class PostsController extends Controller {
     }
 
     // GET /posts/{id}
-    public function show() {
-        return view('posts.show');
+    public function show(Post $post) {
+        return view('posts.show', compact('post'));
     }
 
     // POST /posts
