@@ -27,6 +27,11 @@ class Post extends Model {
         return $this->hasMany(Comment::class);
     }
 
+    // $post->user to get the associated user with a post.
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function addComment($body) {
 
         // There's another way to do this, rather then manually specifying the post id. 
