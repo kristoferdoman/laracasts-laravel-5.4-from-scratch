@@ -22,8 +22,21 @@ class Post extends Model {
     // One other thing you could do instead of doing this for every single class is create a parent class @ App/Model.php
     // protected $guarded = [];
 
+    // Relationship to comments.
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function addComment($body) {
+
+        // There's another way to do this, rather then manually specifying the post id. 
+        // Comment::create([
+        //     'body' => $body,
+        //     'post_id' => $this->id
+        // ]);
+
+        // Behind the scene, this will also set the post_id for the comment because of the relationship we've created.
+        $this->comments()->create(compact('body'));
     }
 
 }
